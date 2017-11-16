@@ -23,40 +23,37 @@ $user = 'ltlabo_board';
 $pass = '1201'; 
 $dbname = 'ltlabo_board';
 
-// mysqliクラスのオブジェクトを作成
+
 $mysqli = new mysqli($host,$user,$pass,$dbname);
-    if ($mysqli->connect_error) { //接続エラーになった場合
-    echo $mysqli->connect_error; //エラーの内容を表示
-    exit();//終了
+    if ($mysqli->connect_error) { 
+    echo $mysqli->connect_error; 
+    exit();
 	} else {
-		//echo "You are connected to the DB successfully.<br>"; //正しく接続できたことを確認
-		$mysqli->set_charset("utf8"); //文字コードを設定
+		$mysqli->set_charset("utf8"); 
 	}
 
 
 //================================================
 
 
-//入力データの受取
 if(!empty($_POST["password"]) && !empty($_POST["new_pass"]) && !empty($_POST["new_pass_k"])){
 	
-    //POSTされた変数の受取
+    
     $password = $_POST["password"];
 	$npass = $_POST["new_pass"];
 	$npassk = $_POST["new_pass_k"];
 
 
-    //ユーザ名が既に使用されているかのチェック
-    $sql = "select password from users where uid = $uid"; //実行するSQLを文字列として記述
+    $sql = "select password from users where uid = $uid"; 
 
-    $result = $mysqli->query($sql); //SQL文の実行
-    $row = $result->fetch_assoc(); //結果から一行づつ読み込み
-    $db_enc_passwd = $row["password"]; //データベースからパスワード読み込み
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc(); 
+    $db_enc_passwd = $row["password"]; 
 
     if((password_verify($password, $db_enc_passwd)) && ($npass == $npassk)){
 		$enc_passwd = password_hash($npass,PASSWORD_DEFAULT);
 		$sql = "update users set password = '$enc_passwd' where uid = $uid";
-		$result = $mysqli->query($sql); //SQL文の実行
+		$result = $mysqli->query($sql); 
         echo "新しいパスワードに変更されました。<br>";
     } else {
         echo "認証できませんでした。パスワードを変更できません。<br>";
@@ -64,8 +61,8 @@ if(!empty($_POST["password"]) && !empty($_POST["new_pass"]) && !empty($_POST["ne
         exit();
     }
 
-    //$result->close(); // 結果セットを閉じる
-    $mysqli->close(); // 接続を閉じる
+    //$result->close(); 
+    $mysqli->close(); 
 } else {
     echo "入力されていない項目があります。<br>";
 	echo "<a href=ch_password_input.html>戻る</a><br>";

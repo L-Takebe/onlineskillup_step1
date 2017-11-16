@@ -10,8 +10,7 @@
 <body>
 <div class="wrap">
 <?php
-// ===================ログイン確認部分ここから==========================
-//ログインしているかを認証
+//ログイン確認
 session_start();
 if(isset($_SESSION['uid'])){
     $uid = $_SESSION['uid'];
@@ -19,7 +18,6 @@ if(isset($_SESSION['uid'])){
 } else {
     echo "ログインしていないので、アクセスできません。<br>";
 	echo "<a href=index.html>TOPページへ</a>";
-	//echo "<a href=session_login_input.html>ログインはこちら</a>";
     exit();
 }
 	if (!isset($_SESSION["date"])) {
@@ -27,53 +25,45 @@ if(isset($_SESSION['uid'])){
   $_SESSION["date"] = date('c');
 }
 else{
-  // セッション変数の取得
   $date = $_SESSION["date"];
   print "前回の訪問日時：$date";
-  // セッション変数の日時更新 
   $_SESSION["date"] = date('c');
     }
-// ===================ログイン確認部分ここまで==========================
 
 	
-	
-//接続用パラメータの設定
+//接続用
 $host = 'localhost'; 
 $user = 'ltlabo_board'; 
 $pass = '1201'; 
 $dbname = 'ltlabo_board';
 
-// mysqliクラスのオブジェクトを作成
+// mysqli
 $mysqli = new mysqli($host,$user,$pass,$dbname);
-    if ($mysqli->connect_error) { //接続エラーになった場合
-    echo $mysqli->connect_error; //エラーの内容を表示
-    exit();//終了
+    if ($mysqli->connect_error) { 
+    echo $mysqli->connect_error; 
+    exit();
 } else {
-    //echo "You are connected to the DB successfully.<br>"; //正しく接続できたことを確認
-    $mysqli->set_charset("utf8"); //文字コードを設定
+    $mysqli->set_charset("utf8"); 
 }
 
 
 $sql = "select userName from users where uid = $uid";
-$result = $mysqli->query($sql); //SQL文の実行
-$row = $result->fetch_assoc(); //結果から一行づつ読み込み
-	$userName = $row["userName"]; //データベースからuser name読み込み
+$result = $mysqli->query($sql); 
+$row = $result->fetch_assoc(); 
+	$userName = $row["userName"]; 
 
 	
 //=============================================
 //メッセージ投稿
 //=============================================
 
-	$number = $_GET["number"];	//掲示板名test
+	$number = $_GET["number"];
 //メッセージが入力されていたら登録
 if(!empty($_POST["mainText"])){
     $mainText = nl2br(htmlspecialchars($_POST["mainText"]));
-    //$sql = "insert into datas (message) values ('$userName : $mainText')"; //実行するSQLを文字列として記述
-	$sql = "insert into datas (message, number) values ('$userName : $mainText', '$number')"; //test
+	$sql = "insert into datas (message, number) values ('$userName : $mainText', '$number')"; 
     $result = $mysqli->query($sql); //SQL文の実行
-    if ($result) { //SQL実行のエラーチェック
-		//echo"これは掲示板 $number です。";//test
-        //echo "データの登録に成功しました";
+    if ($result) { 
     } else {
         echo "データの登録に登録に失敗しました";
         echo "SQL文：$sql";
@@ -82,7 +72,7 @@ if(!empty($_POST["mainText"])){
         exit();
     }
 } else {
-    //echo "テキストが登録されていません<br>";
+    echo "テキストが登録されていません<br>";
 }
 
 
@@ -104,21 +94,15 @@ if(!empty($_POST["mainText"])){
 //メッセージ表示
 //=============================================
 
-$sql = "select message, created from datas where number = '$number' order by created desc"; //実行するSQLを文字列として記述 where number = $number
+$sql = "select message, created from datas where number = '$number' order by created desc";
 
-$result = $mysqli->query($sql); //SQL文の実行
-if ($result) { //実行結果が正しければ
-    // 連想配列を取得
-    while ($row = $result->fetch_assoc()) { //結果から一行づつ読み込み
-    echo $row["created"] . " - " . $row["message"] . "<hr>"; //結果を整形して表示
+$result = $mysqli->query($sql); 
+if ($result) { 
+    while ($row = $result->fetch_assoc()) { 
+    echo $row["created"] . " - " . $row["message"] . "<hr>"; 
     }
-    // 結果セットを閉じる
     $result->close();
 }
-
-//=============================================
-// DB接続を閉じる
-//=============================================
 $mysqli->close();
 ?>
 	
