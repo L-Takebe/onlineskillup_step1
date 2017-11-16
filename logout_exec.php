@@ -8,6 +8,7 @@
 </head>
   
 <body>
+	<div class="wrap">
 <?php
 
 session_start();
@@ -19,6 +20,10 @@ if (isset($_COOKIE["PHPSESSID"])) {
 session_destroy();
 	?>
 	ログアウトが完了しました。<br>
+		
+		<div class="move">
 	<a href="index.html">TOPページへ</a>
+		</div>
+	</div>
 </body>
 </html>

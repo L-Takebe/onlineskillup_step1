@@ -7,6 +7,7 @@
 <title>ログイン認証</title>
 </head>
 <body>
+	<div class="wrap">
 <?php
 
 $host = 'localhost'; 
@@ -55,14 +56,23 @@ if(!empty($_POST["userName"]) && !empty($_POST["password"])){
 
     $result->close(); 
     $mysqli->close();
-	echo "掲示板へ移動<br>
-	<a href=message_auth.php?number=掲示板1>掲示板1</a><br>
-	<a href=message_auth.php?number=掲示板2>掲示板2</a>";
 		
 	
 } else {
     echo "入力されていない項目があります。<br>";
+	echo "<a href=\"index.html\">戻る</a><br>";
+		exit();
 }
-?>
+		?>
+		<div class="move">
+<br>
+	掲示板へ移動<br>
+	<a href="message_auth.php?number=掲示板1">掲示板1</a>
+<br>
+	
+<a href="message_auth.php?number=掲示板2">掲示板2</a>
+<br>
+		</div>
+	</div>
 </body>
 </html>

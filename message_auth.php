@@ -21,7 +21,7 @@ if(isset($_SESSION['uid'])){
     exit();
 }
 	if (!isset($_SESSION["date"])) {
-  print("セッション変数を作成します");
+  //print("セッション変数を作成します");
   $_SESSION["date"] = date('c');
 }
 else{
@@ -58,6 +58,7 @@ $row = $result->fetch_assoc();
 //=============================================
 
 	$number = $_GET["number"];
+	
 //メッセージが入力されていたら登録
 if(!empty($_POST["mainText"])){
     $mainText = nl2br(htmlspecialchars($_POST["mainText"]));
@@ -66,16 +67,17 @@ if(!empty($_POST["mainText"])){
     if ($result) { 
     } else {
         echo "データの登録に登録に失敗しました";
+    }
         echo "SQL文：$sql";
         echo "エラー番号：$mysqli->error";
         echo "エラーメッセージ：$mysqli->error";
+	echo "<a href=\"message_auth.php?number=<?php echo $number ?>\">戻る</a><br>"
         exit();
-    }
 } else {
-    echo "テキストが登録されていません<br>";
+    echo "<br><br>テキストが登録されていません<br>";
 }
 
-
+echo "<br>これは'$number'です。<br><br>"
 //=============================================
 //入力窓
 //=============================================
@@ -115,14 +117,16 @@ $mysqli->close();
 	<br>
 	パスワードの変更はこちら<br>
 	<a href="ch_password_input.html">パスワード変更へ</a><br>
-	<br><br>
+	
+	<div class="move">
+	<br>
 	掲示板の移動<br>
 	<a href="message_auth.php?number=掲示板1">掲示板1</a>
 <br>
 	
 <a href="message_auth.php?number=掲示板2">掲示板2</a>
 <br>
-	
+	</div>
 </div>
 </body>
 </html>

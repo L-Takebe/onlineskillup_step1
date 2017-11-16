@@ -7,6 +7,7 @@
 <title>パスワード変更</title>
 </head>
 <body>
+	<div class="wrap">
 <?php
 
 session_start();
@@ -15,6 +16,7 @@ if(isset($_SESSION['uid'])){
     echo "ログイン済みです。あなたのユーザIDは $uid です";
 } else {
     echo "ログインしていないので、アクセスできません。";
+	echo "<a href=\"index.html\">TOPページへ</a><br>"
     exit();
 }
 
@@ -57,7 +59,7 @@ if(!empty($_POST["password"]) && !empty($_POST["new_pass"]) && !empty($_POST["ne
         echo "新しいパスワードに変更されました。<br>";
     } else {
         echo "認証できませんでした。パスワードを変更できません。<br>";
-		echo "<a href=index.html>戻る</a><br>";
+		echo "<a href=\"ch_password_exec.html\">戻る</a><br>";
         exit();
     }
 
@@ -65,11 +67,19 @@ if(!empty($_POST["password"]) && !empty($_POST["new_pass"]) && !empty($_POST["ne
     $mysqli->close(); 
 } else {
     echo "入力されていない項目があります。<br>";
-	echo "<a href=ch_password_input.html>戻る</a><br>";
+	echo "<a href=\"ch_password_input.html\">戻る</a><br>";
 }
 	
 ?>
+		<div class="move">
 	<br>
-	<a href=message_auth.php>掲示板へ</a>
+	掲示板へ移動<br>
+	<a href="message_auth.php?number=掲示板1">掲示板1</a>
+<br>
+	
+<a href="message_auth.php?number=掲示板2">掲示板2</a>
+<br>
+		</div>
+	</div>
 </body>
 </html>

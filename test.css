@@ -1,9 +1,9 @@
 body{
+    padding: auto auto 30% auto;
 	background-attachment: fixed;
     background-size: cover;
     background-color: #addfff;
     text-align: center;
-    font-family: 'kokoro';
 }
 
 @font-face {
@@ -13,7 +13,7 @@ body{
 }
 
 h1{
-    padding: 2% auto;
+    padding: 20% auto;
     margin: 8% 8% 4% 8%;
     font-size: 3.5em;
 }
@@ -22,6 +22,18 @@ p{
     font-size: 2em;
 }
 a:hover{
-    opacity: 0.55;
-    background:#ffffff;
+    opacity: 0.75;
+    background:#ffefef;
+}
+.wrap{
+	font-family: 'kokoro';
+}
+input[type="password"]{
+ font-family: Verdana, sans-serif;
+}
+.move{
+    padding: 10%;
+}
+.ch{
+    padding: 15%;
 }

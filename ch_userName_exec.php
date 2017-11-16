@@ -7,6 +7,7 @@
 <title>ユーザー名変更</title>
 </head>
 <body>
+	<div class="wrap">
 <?php
 
 session_start();
@@ -15,6 +16,7 @@ if(isset($_SESSION['uid'])){
     echo "ログイン済みです。あなたのユーザIDは $uid です";
 } else {
     echo "ログインしていないので、アクセスできません。";
+	echo "<a href=\"index.html\">TOPページへ</a><br>"
     exit();
 }
 
@@ -64,6 +66,7 @@ if(!empty($_POST["userName"]) && !empty($_POST["userName1"]) && !empty($_POST["u
 			echo "SQL文：$sql";
 			echo "エラー番号：$mysqli->error";
 			echo "エラーメッセージ：$mysqli->error";
+			echo "<a href=\"ch_userName_input.html\">戻る</a><br>"
 			exit();
 		}
     } else {
@@ -78,7 +81,15 @@ if(!empty($_POST["userName"]) && !empty($_POST["userName1"]) && !empty($_POST["u
 	echo "<a href=\"ch_userName_input.html\">戻る</a><br>";
 }
 ?>
-	<br>
-	<a href="message_auth.php">掲示板へ</a>
+	<div class="move">
+		<br>
+	掲示板へ移動<br>
+	<a href="message_auth.php?number=掲示板1">掲示板1</a>
+<br>
+	
+<a href="message_auth.php?number=掲示板2">掲示板2</a>
+		<br>
+		</div>
+	</div>
 </body>
 </html>

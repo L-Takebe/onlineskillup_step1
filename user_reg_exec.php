@@ -7,6 +7,7 @@
 <title>新規ユーザ登録</title>
 </head>
 <body>
+	<div class="wrap">
 <?php
 
 $host = 'localhost'; 
@@ -19,6 +20,7 @@ $mysqli = new mysqli($host,$user,$pass,$dbname);
     if ($mysqli->connect_error) { 
     echo $mysqli->connect_error;
     exit();
+		echo "<a href=\"index.html\">TOPページへ</a><br>"
 } else {
     $mysqli->set_charset("utf8");
 }
@@ -37,12 +39,14 @@ if(!empty($_POST["userName"]) && !empty($_POST["password1"]) && !empty($_POST["p
     $result = $mysqli->query($sql); 
     if( $result->num_rows != 0){
         echo "ユーザ名「${userName}」はすでに登録されているため使用できません。<br>";
+		echo "<a href=\"user_reg_input.html\">戻る</a><br>"
         exit();
     }
 
     
     if($password1 != $password2) {
         echo "パスワードが一致しません<br>";
+		echo "<a href=\"user_reg_input.html\">戻る</a><br>"
         exit();
     }
     
@@ -59,6 +63,7 @@ if(!empty($_POST["userName"]) && !empty($_POST["password1"]) && !empty($_POST["p
         echo "SQL文：$sql <br>"; 
         echo "エラー番号：$mysqli->error <br>";
         echo "エラーメッセージ：$mysqli->error <br>";
+		echo "<a href=\"user_reg_input.html\">戻る</a><br>"
         exit();
     }
 	
@@ -78,8 +83,18 @@ if(!empty($_POST["userName"]) && !empty($_POST["password1"]) && !empty($_POST["p
     $mysqli->close();
 } else {
     echo "入力されていない項目があります。<br>";
+	echo "<a href=\"user_reg_input.html\">戻る</a><br>"
 }
 ?>
-	<a href="message_auth.php">掲示板へ</a>
+		<div class="move">
+<br>
+	掲示板へ移動<br>
+	<a href="message_auth.php?number=掲示板1">掲示板1</a>
+<br>
+	
+<a href="message_auth.php?number=掲示板2">掲示板2</a>
+<br>
+		</div>
+	</div>
 </body>
 </html>
