@@ -1,0 +1,27 @@
+body{
+	background-attachment: fixed;
+    background-size: cover;
+    background-color: #addfff;
+    text-align: center;
+    //font-family: 'kokoro';
+}
+
+@font-face {
+  font-family: 'kokoro';
+  src: url(font/Kokoro.otf) format('opentype');
+  src: url(font/Kokoro.woff) format('woff');
+}
+
+h1{
+    padding: 2% auto;
+    margin: 8% 8% 4% 8%;
+    font-size: 3.5em;
+}
+p{
+    margin: auto auto 2% auto;
+    font-size: 2em;
+}
+a:hover{
+    opacity: 0.55;
+    background:#ffffff;
+}
