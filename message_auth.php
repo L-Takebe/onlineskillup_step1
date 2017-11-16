@@ -71,13 +71,13 @@ if(!empty($_POST["mainText"])){
         echo "SQL文：$sql";
         echo "エラー番号：$mysqli->error";
         echo "エラーメッセージ：$mysqli->error";
-	echo "<a href=\"message_auth.php?number=<?php echo $number ?>\">戻る</a><br>"
+	echo "<a href=\"message_auth.php?number=<?php echo $number ?>\">戻る</a><br>";
         exit();
 } else {
     echo "<br><br>テキストが登録されていません<br>";
 }
 
-echo "<br>これは'$number'です。<br><br>"
+echo "<br>これは'$number'です。<br><br>";
 //=============================================
 //入力窓
 //=============================================

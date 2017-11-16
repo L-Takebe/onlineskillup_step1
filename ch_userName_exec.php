@@ -16,7 +16,7 @@ if(isset($_SESSION['uid'])){
     echo "ログイン済みです。あなたのユーザIDは $uid です";
 } else {
     echo "ログインしていないので、アクセスできません。";
-	echo "<a href=\"index.html\">TOPページへ</a><br>"
+	echo "<a href=\"index.html\">TOPページへ</a><br>";
     exit();
 }
 
@@ -66,7 +66,7 @@ if(!empty($_POST["userName"]) && !empty($_POST["userName1"]) && !empty($_POST["u
 			echo "SQL文：$sql";
 			echo "エラー番号：$mysqli->error";
 			echo "エラーメッセージ：$mysqli->error";
-			echo "<a href=\"ch_userName_input.html\">戻る</a><br>"
+			echo "<a href=\"ch_userName_input.html\">戻る</a><br>";
 			exit();
 		}
     } else {

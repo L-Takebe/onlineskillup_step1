@@ -16,7 +16,7 @@ if(isset($_SESSION['uid'])){
     echo "ログイン済みです。あなたのユーザIDは $uid です";
 } else {
     echo "ログインしていないので、アクセスできません。";
-	echo "<a href=\"index.html\">TOPページへ</a><br>"
+	echo "<a href=\"index.html\">TOPページへ</a><br>";
     exit();
 }
 
